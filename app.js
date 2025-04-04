@@ -19,8 +19,8 @@ async function processPDF() {
         
         document.getElementById('status').textContent = `Procesando ${pdf.numPages} páginas...`;
         
-        for (let i = 1; i <= pdf.numPages; i++) {
-            const page = await pdf.getPage(i);
+        for (let i = 0; i < pdf.numPages; i++) {
+            const page = await pdf.getPage(i + 1);
             const viewport = page.getViewport({ scale: 2 }); // Escala 2x para mejor calidad
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
@@ -37,11 +37,11 @@ async function processPDF() {
             const jpgData = canvas.toDataURL('image/jpeg', 0.9);
             const blob = await fetch(jpgData).then(res => res.blob());
             
-            // Nombre automático con numeración
+            // Guardar imagen con numeración que comienza en 0
             zip.file(`${currentBaseName}_${i}.jpg`, blob);
         }
         
-        // Generar ZIP
+        // Generar archivo ZIP
         const zipBlob = await zip.generateAsync({ type: 'blob' });
         const link = document.createElement('a');
         link.href = URL.createObjectURL(zipBlob);
