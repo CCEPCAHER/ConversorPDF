@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF a JPG</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>PDF a JPG Automático</h1>
+        <input type="text" id="baseName" placeholder="Nombre base (ej: Condis)">
+        <input type="file" id="pdfInput" accept="application/pdf">
+        <button id="processBtn">Convertir a JPGs</button>
+        <div id="status"></div>
+    </div>
+
+    <!-- Usaremos pdf.js para renderizar PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
